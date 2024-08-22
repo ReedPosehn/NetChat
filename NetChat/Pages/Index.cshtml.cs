@@ -1,20 +1,25 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using NetChat.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NetChat.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly AppDbContext _context;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(AppDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public void OnGet()
-        {
+        public IList<Message> Messages { get; set; }
 
+        public async Task OnGetAsync()
+        {
+            Messages = await _context.Messages.ToListAsync();
         }
     }
 }

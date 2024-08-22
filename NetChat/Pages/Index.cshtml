@@ -1,28 +1,53 @@
 ﻿@page
-<div class="container">
-    <div class="row p-1">
-        <div class="col-1">User</div>
-        <div class="col-5"><input type="text" id="userInput" /></div>
-    </div>
-    <div class="row p-1">
-        <div class="col-1">Message</div>
-        <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>
-    </div>
-    <div class="row p-1">
-        <div class="col-6 text-end">
-            <input type="button" id="sendButton" value="Send Message" />
+@model NetChat.Pages.IndexModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row p-1">
+            <div class="col-1">User</div>
+            <div class="col-5">
+                <input type="text" id="userInput" class="form-control" placeholder="Your name" />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-1">Message</div>
+            <div class="col-5">
+                <input type="text" class="w-100 form-control" id="messageInput" placeholder="Your message" />
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6 text-end">
+                <button id="sendButton" class="btn btn-primary">Send Message</button>
+            </div>
+        </div>
+        <div class="row p-1">
+            <div class="col-6">
+                <hr />
+            </div>
+        </div>
+
+        <div class="row p-1">
+            <div class="col-6">
+                <ul id="messagesList" class="list-unstyled">
+                    @foreach (var message in Model.Messages)
+                    {
+                        <li>@message.Timestamp: @message.User - @message.Content</li>
+                    }
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="row p-1">
-        <div class="col-6">
-            <hr />
-        </div>
-    </div>
-    <div class="row p-1">
-        <div class="col-6">
-            <ul id="messagesList"></ul>
-        </div>
-    </div>
-</div>
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/chat.js"></script>
+
+    <!-- Reference SignalR library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>
+
+    <!-- Reference custom JavaScript file -->
+    <script src="~/js/chat.js"></script>
+</body>
+</html>

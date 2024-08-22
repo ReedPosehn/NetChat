@@ -4,18 +4,27 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 
 ## Current Features
 - Real-time chat functionality
+- Storage of messages in SQLite DB
 
 ## ToDo
-- Incorporate database for message storage
+- Improve database experience with display chats
+- Change script 
+- Clean up script
 - Improve UI to be less generic
 - Add unit tests
 
 ## Tech
 - ASP.NET Core (Framework for the web application)
 - SignalR (Library for real-time web functionality)
+- Sqlite (Lightweight database for message storage)
 
 ## Usage Instructions
-Ensure you have the .NET SDK installed on your machine. (https://dotnet.microsoft.com/download). 
+Ensure you have the .NET SDK installed on your machine. (https://dotnet.microsoft.com/download).
+Packages required are the "Microsoft.EntityFrameworkCore", "Microsoft.EntityFrameworkCore.Tools" and "Microsoft.EntityFrameworkCore.Sqlite".
+
+You will need to install SQLite (https://sqlite.org/download.html). Run commands to apply migrations "dotnet ef migrations add InitialCreate" and
+"dotnet ef database update". DB should be named NetChat.db
+
 
 Clone the repository, build the application and run.
 
