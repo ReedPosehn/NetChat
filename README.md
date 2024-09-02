@@ -7,11 +7,21 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 - Storage of messages in SQLite DB
 
 ## ToDo
-- Improve database experience with display chats
-- Change script 
-- Clean up script
-- Improve UI to be less generic
+### UI
+- Change UI to darker mode. Customize fonts
+- Add more information to the messaging. Filter by dates
+
+### User authentication
+- Simple login system. Nothing complicated; just a prototype for logging in and chatting
+
+### Testing
 - Add unit tests
+
+## Clean up
+- Eliminate unneccesary script
+
+### Investigation work
+- Look at changing Javascript to TypeScript
 
 ## Tech
 - ASP.NET Core (Framework for the web application)
