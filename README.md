@@ -13,6 +13,7 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 
 ### User authentication
 - Simple login system. Nothing complicated; just a prototype for logging in and chatting
+- Added basic login. Need to add basic logout. Integrate with DB after setup.
 
 ### Testing
 - Add unit tests
