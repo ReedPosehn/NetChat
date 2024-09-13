@@ -25,6 +25,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                   <form method="post" action="/Logout" class="form-inline">
+                                    <button type="submit" class="btn btn-link nav-link text-dark">Logout</button>
+                                </form>
+                                </li>
+                            }
                     </ul>
                 </div>
             </div>

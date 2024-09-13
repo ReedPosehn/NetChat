@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NetChat.Models;
 using NetChat.Hubs;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,15 @@ app.MapGet("/", async (HttpContext context) =>
         context.Response.Redirect("/Index");
     }
     await Task.CompletedTask;
+});
+
+// Redirect logout to the Login page
+app.MapPost("/Logout", async (HttpContext context) =>
+{
+    // Sign out the user
+    await context.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+    // Redirect to the login page after logging out
+    context.Response.Redirect("/Login");
 });
 
 app.MapHub<ChatHub>("/chatHub");

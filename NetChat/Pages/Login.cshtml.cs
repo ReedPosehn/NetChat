@@ -48,5 +48,11 @@ namespace NetChat.Pages
         {
             return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
         }
+
+        public async Task<IActionResult> OnPostLogoutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToPage("/Login");
+        }
     }
 }
