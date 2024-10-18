@@ -6,7 +6,11 @@
 
 <h1>Login</h1>
 <h4>*Proper authentication to be implemented later... for now just enter a name*</h4>
+
 <form method="post">
+    <!-- Display validation summary for model errors -->
+    <div asp-validation-summary="All" class="text-danger"></div>
+
     <div class="form-group">
         <label for="username">Username</label>
         <input type="text" id="username" name="Username" class="form-control" required />

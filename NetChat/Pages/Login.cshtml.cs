@@ -3,11 +3,21 @@ using Microsoft.AspNetCore.Authentication;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using NetChat.Models;
+using System.Threading.Tasks;
 
 namespace NetChat.Pages
 {
     public class LoginModel : PageModel
     {
+        private readonly AppDbContext _context;
+
+        public LoginModel(AppDbContext context)
+        {
+            _context = context;
+        }
+
         [BindProperty]
         public string Username { get; set; }
         [BindProperty]
@@ -22,7 +32,7 @@ namespace NetChat.Pages
             if (ModelState.IsValid)
             {
                 // Handle Login requests
-                if (isValidLogin(Username, Password))
+                if (await IsValidLogin(Username, Password))
                 {
                     var claims = new[]
                     {
@@ -43,10 +53,26 @@ namespace NetChat.Pages
             return Page();
         }
 
-        // Validate that they have passed something in..
-        private bool isValidLogin(string username, string password)
+        // Validate that the username and password are correct
+        private async Task<bool> IsValidLogin(string username, string password)
         {
-            return !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password);
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                return false;
+
+            // Find the user by username
+            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
+            if (user == null)
+                ModelState.AddModelError(string.Empty, "Invalid login attempt."); // Add error message
+                return false;
+
+            // Verify the password against the stored hash
+            return VerifyPasswordHash(password, user.PasswordHash);
+        }
+
+        // Using BCrypt for password encryption
+        private bool VerifyPasswordHash(string password, string storedHash)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, storedHash); // Use BCrypt for verifying
         }
 
         public async Task<IActionResult> OnPostLogoutAsync()

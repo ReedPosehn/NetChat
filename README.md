@@ -5,15 +5,17 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 ## Current Features
 - Real-time chat functionality
 - Storage of messages in SQLite DB
+- Login page checks whether user has an existing login
 
 ## ToDo
 ### UI
 - Change UI to darker mode. Customize fonts
 - Add more information to the messaging. Filter by dates
+- Add user registration to login
 
 ### User authentication
-- Simple login system. Nothing complicated; just a prototype for logging in and chatting
-- Added basic login. Need to add basic logout. Integrate with DB after setup.
+- Checks credentials against database for authentication
+- Registration piece needs to be built next
 
 ### Testing
 - Add unit tests
@@ -36,6 +38,8 @@ Packages required are the "Microsoft.EntityFrameworkCore", "Microsoft.EntityFram
 You will need to install SQLite (https://sqlite.org/download.html). Run commands to apply migrations "dotnet ef migrations add InitialCreate" and
 "dotnet ef database update". DB should be named NetChat.db
 
+BCrypt is used for password hashing - you can install the BCrypt package using the .NET CLI. Run the following command in your project directory:
+dotnet add package BCrypt.Net-Next
 
 Clone the repository, build the application and run.
 
