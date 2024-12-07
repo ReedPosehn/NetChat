@@ -61,10 +61,10 @@ namespace NetChat.Pages
 
             // Find the user by username
             var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == username);
-            if (user == null)
+            if (user == null) {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt."); // Add error message
                 return false;
-
+            }
             // Verify the password against the stored hash
             return VerifyPasswordHash(password, user.PasswordHash);
         }
