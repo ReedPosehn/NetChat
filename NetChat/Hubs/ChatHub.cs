@@ -15,8 +15,16 @@ public class ChatHub : Hub
     }
 
     // Method called by clients to send a message
-    public async Task SendMessage(string user, string messageText)
+    public async Task SendMessage(string messageText)
     {
+        var user = Context.User?.Identity?.Name;
+
+        if(String.IsNullOrEmpty(user))
+        {
+            // Handle the case where the user is not logged in or the name claim is not set
+            throw new UnauthorizedAccessException("User not logged in");
+        }
+
         // Create a new message instance
         var message = new Message
         {

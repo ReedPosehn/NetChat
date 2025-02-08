@@ -47,6 +47,8 @@ namespace NetChat.Pages
 
                     return RedirectToPage("/Index"); // Redirect to the home page after successful login
                 }
+                // Login attempt failed - password incorrect
+                ModelState.AddModelError(string.Empty, "Invalid login credentials."); // Add error message
             }
 
             // If validation fails, stay on the same page and show errors
