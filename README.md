@@ -11,7 +11,7 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 ### UI
 - Change UI to darker mode. Customize fonts
 - Add more information to the messaging. Filter by dates
-- Add user registration to login
+- Improve UI of the chatroom; functionality should be ironed out before UI changes made.
 
 ### User authentication
 - Checks credentials against database for authentication
