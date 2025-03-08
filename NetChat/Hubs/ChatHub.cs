@@ -37,9 +37,7 @@ public class ChatHub : Hub
         _context.Messages.Add(message);
         await _context.SaveChangesAsync();
 
-        // Broadcast the message to all connected clients
-        await Clients.All.SendAsync("ReceiveMessage", user, messageText, message.Timestamp);
+        // Broadcast the message to all connected clients; reformat the timestamp for the client
+        await Clients.All.SendAsync("ReceiveMessage", user, messageText, message.Timestamp.ToString("yyyy-mm-dd h:mm:ss tt")) ;
     }
-
-    // Optional: You can add other methods as needed, e.g., for connection management
 }

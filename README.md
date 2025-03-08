@@ -10,7 +10,7 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 ## ToDo
 ### UI
 - Change UI to darker mode. Customize fonts
-- Add more information to the messaging. Filter by dates
+- Look into displaying a more proper amount of messages; perhaps pulling last 50, with a scroll bar for previous.
 - Improve UI of the chatroom; functionality should be ironed out before UI changes made.
 
 ### User authentication
