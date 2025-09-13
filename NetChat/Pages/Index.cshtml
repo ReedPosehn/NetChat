@@ -27,16 +27,38 @@
         </div>
 
         <div class="row p-1">
-            <div class="col-6">
+            <div class="col-md-8">
                 <ul id="messagesList" class="list-unstyled">
                     @foreach (var message in Model.Messages)
                     {
-                        <li>@message.Timestamp: @message.User - @message.Content</li>
+                        <li>@message.Timestamp.ToString("yyyy-MM-dd HH:mm"): @message.User - @message.Content</li>
                     }
                 </ul>
             </div>
+
+            <div class="col-md-4">
+                <form method="get">
+                    <div class="form-group">
+                        <label for="filterDate">Filter by Date</label>
+                        <input type="date" id="filterDate" name="FilterDate" class="form-control"
+                               value="@(Model.FilterDate?.ToString("yyyy-MM-dd"))" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
+
+    <!-- Automatically apply the date filter when it is modified -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const filterInput = document.getElementById("filterDate");
+            if (filterInput) {
+                filterInput.addEventListener("change", function () {
+                    this.form.submit();
+                });
+            }
+        });
+    </script>
 
     <!-- Reference SignalR library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.0/signalr.min.js"></script>

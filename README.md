@@ -29,6 +29,7 @@ A simple chat client created using ASP.Net and SignalR for real time communicati
 ## Tech
 - ASP.NET Core (Framework for the web application)
 - SignalR (Library for real-time web functionality)
+- BCrypt (Password hashing)
 - Sqlite (Lightweight database for message storage)
 
 ## Usage Instructions
